@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<h2>Director Listing</h2>
+<button><a th:href="@{/listmovies}">List Movies</a></button>
+<button><a th:href="@{/newdirector}">Add New Director</a></button>
+<button><a th:href="@{/newmovie}">Add New Movie</a></button>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Movies</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="director : ${alldirectors}">
+            <td th:text="${director.name}"></td>
+            <td th:inline="text">[[${director.genre}]]</td>
+            <td>
+                <ul>
+                    <div th:each="movie : ${director.movies}">
+                        <li th:inline="text">[[${movie.title}]] released in [[${movie.year}]]</li>
+                    </div>
+                </ul>
+            </td>
+            <td>
+                <button><a th:href="@{/update/{id}(id=${director.id})}">Update</a></button>
+                <button><a th:href="@{/delete/{id}(id=${director.id})}">Delete</a></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie</title>
+</head>
+<body>
+<h2>New Movie</h2>
+<form th:action="@{/processmovie}" method="post" th:object="${movie}">
+    Title:<input type="text" th:field="*{title}"/><br/>
+    Year:<input type="number" th:field="*{year}"/><br/>
+    Description:<input type="text" th:field="*{description}"/><br/>
+    Director: <select th:field="*{director}">
+                <option th:each ="director : ${alldirectors}"
+                        th:text="${director.name}"
+                        th:value="${director.id}">
+                </option>
+              </select>
+    <br/>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+
+</body>
+</html>
